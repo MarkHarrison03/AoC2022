@@ -1,0 +1,46 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class AocDay1 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner data = new Scanner(new File("src\\data.txt"));
+
+
+        int biggest = 0;
+        int second = 0;
+        int third = 0;
+        int currentBuildUp = 0;
+
+        while(data.hasNext()){
+            String s = data.nextLine();
+            if(!s.equals("")){
+                currentBuildUp += Integer.parseInt(s);
+            }else{
+
+                if(currentBuildUp > biggest){
+
+                    int temp = second;
+
+                    second = biggest;
+                    biggest = currentBuildUp;
+                    third = temp;
+                }else if(currentBuildUp > second){
+                    int temp = second;
+                    second = currentBuildUp;
+                    third = temp;
+                }else if(currentBuildUp > third){
+                    third = currentBuildUp;
+                }
+                
+                currentBuildUp = 0;
+
+            }
+        }
+        System.out.println(biggest);
+        System.out.println(second);
+        System.out.println(third);
+        System.out.println( biggest + second + third);
+    }
+}
+
