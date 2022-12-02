@@ -1,0 +1,78 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class AoCDay2 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner in = new Scanner(new File("src\\AocDay2.txt"));
+        HashMap<String, Integer> points = new HashMap();
+        points.put("A", 1);
+        points.put("B", 2);
+        points.put("C",3);
+        HashMap<String, String> lose = new HashMap<>();
+        lose.put("A","C");
+        lose.put("B","A");
+        lose.put("C", "B");
+        HashMap<String, String> win = new HashMap<>();
+        win.put("A","B");
+        win.put("B","C");
+        win.put("C", "A");
+        int totalPoints = 0;
+        while(in.hasNext()){
+            int currentPoints = 0;
+            String s = in.nextLine();
+            System.out.println(s);
+            String[]chars = s.split(" ");
+          if(chars[1].equals("X")){
+              String yourChoice = lose.get(chars[0]);
+              currentPoints += points.get(yourChoice);
+          }else if(chars[1].equals("Y")){
+              currentPoints += points.get(chars[0]);
+              currentPoints += 3;
+          }else if(chars[1].equals("Z")){
+              String yourChoice = win.get(chars[0]);
+              currentPoints += points.get(yourChoice);
+              currentPoints += 6;
+          }
+
+
+            totalPoints += currentPoints;
+
+
+        }
+        System.out.println(totalPoints);
+    }
+}
+//part 1 code
+/*  if(chars[0].equals("A")) {
+                System.out.println("aaaa");
+
+                if(chars[1].equals("X")) {
+                    currentPoints += 3;
+                }else if(chars[1].equals("Y")) {
+                    currentPoints += 6;
+                }else if(chars[1].equals("Z")){
+                        currentPoints += 0;
+                }
+            }else if(chars[0].equals("B")) {
+
+
+                if(chars[1].equals("X")) {
+                    currentPoints += 0;
+                }else if(chars[1].equals("Y")) {
+                    currentPoints += 3;
+                }else if(chars[1].equals("Z")){
+                    currentPoints += 6;
+                }
+
+            }else if(chars[0].equals("C")){
+                    System.out.println(chars[0]);
+
+                if(chars[1].equals("X")) {
+                    currentPoints += 6;
+                }else if(chars[1].equals("Y")) {
+                    currentPoints += 0;
+                }else if(chars[1].equals("Z")){
+                    currentPoints += 3;
+                }}*/
