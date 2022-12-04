@@ -1,0 +1,96 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class AoCDay3 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner in = new Scanner(new File("src\\AocDay3.txt"));
+        int totalPriority = 0;
+        int currentAmount = 0;
+        while (in.hasNext()) {
+            String s = in.nextLine();
+            String t = in.nextLine();
+            String u = in.nextLine();
+            int length = Math.min(Math.min(s.length(), t.length()), u.length());
+
+            outer :
+            for(int i = 0; i < length; i ++){
+
+                if(s.length() == length){
+                    if(t.contains(String.valueOf(s.charAt(i)))){
+                        if(u.contains(String.valueOf(s.charAt(i)))){
+                            char c = s.charAt(i);
+                            if(c > 96){
+                                System.out.println(c + "" +(c-96));
+                                totalPriority += (c - 96);
+                                break outer;
+                            }else{
+                                System.out.println(c + "" +(c-38));
+                                totalPriority += (c - 38 );
+                                break outer;
+                            }
+                        }
+                    }
+                }else if(t.length() == length){
+                    if(s.contains(String.valueOf(t.charAt(i)))){
+                        if(u.contains(String.valueOf(t.charAt(i)))){
+                            char c = t.charAt(i);
+                            if(c > 96){
+                                System.out.println(c + "" +(c-96));
+                                totalPriority += (c - 96);
+                                break outer;
+                            }else{
+                                System.out.println(c + "" +(c-38));
+                                totalPriority += (c - 38 );
+                                break outer;
+                            }
+                        }
+                    }
+                }else if(u.length() == length){
+                    if(t.contains(String.valueOf(u.charAt(i)))){
+                        if(s.contains(String.valueOf(u.charAt(i)))){
+                            char c = u.charAt(i);
+                            if(c > 96){
+                                System.out.println(c + "" +(c-96));
+                                totalPriority += (c - 96);
+                                break outer;
+                            }else{
+                                System.out.println(c + "" +(c-38));
+                                totalPriority += (c - 38 );
+                                break outer;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            }
+            System.out.println(totalPriority + "faf");
+        }
+    }
+
+/*int a = 0;
+         while(in.hasNext()){
+            System.out.println("Line number " + a);
+            a++;
+            String current = in.nextLine();
+            int length = current.length();
+            String[] departments = {current.substring(0, length/2), current.substring(length/2,length)};
+             outer : for(int i = 0; i < length/2; i++){
+                for(int j = 0; j < length/2; j++){
+                    if(departments[0].charAt(i) == departments[1].charAt((j))){
+                        char c = departments[0].charAt(i);
+                        if(c > 96){
+                            System.out.println(c + "" +(c-96));
+                            totalPriority += (c - 96);
+                            break outer;
+                        }else{
+                            System.out.println(c + "" +(c-38));
+                            totalPriority += (c - 38 );
+                            break outer;
+                        }
+                    }
+                }
+            }
+        }*/
