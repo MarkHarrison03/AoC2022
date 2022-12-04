@@ -1,0 +1,28 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class AoCDay4 {
+    public static void main(String[] args) throws FileNotFoundException {
+        Scanner in = new Scanner(new File("src\\AoCDay4.txt"));
+        int total = 0;
+        while(in.hasNext()) {
+            String[] s = in.nextLine().split(",");
+            String[] firstNums = s[0].split("-");
+            String[] secondNums = s[1].split("-");
+            int firstMin = Integer.parseInt(firstNums[0]),
+            firstMax = Integer.parseInt(firstNums[1]),
+                    secondMin = Integer.parseInt(secondNums[0]),
+            secondMax = Integer.parseInt(secondNums[1]);
+            if ((firstMin <= secondMin && secondMin <= firstMax || firstMin >= secondMin && secondMax >= firstMin)){
+                total++;
+        }
+
+            }
+        System.out.println(total);
+
+    }
+
+    }
+
+
