@@ -1,0 +1,116 @@
+package lab8;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class AoCDay5 {
+    public static void main(String[] args) throws FileNotFoundException {
+
+
+    ArrayList<Character> stack1 = new ArrayList<>();
+        stack1.add('R');
+        stack1.add('W');
+        stack1.add('F');
+        stack1.add('H');
+        stack1.add('T');
+        stack1.add('S');
+        ArrayList<Character> stack2 = new ArrayList<>();
+
+        stack2.add('W');
+        stack2.add('Q');
+        stack2.add('D');
+        stack2.add('G');
+        stack2.add('S');
+        ArrayList<Character> stack3 = new ArrayList<>();
+
+        stack3.add('W');
+        stack3.add('T');
+        stack3.add('B');
+
+        ArrayList<Character> stack4 = new ArrayList<>();
+
+        stack4.add('J');
+        stack4.add('Z');
+        stack4.add('Q');
+        stack4.add('N');
+        stack4.add('T');
+        stack4.add('W');
+        stack4.add('R');
+        stack4.add('D');
+
+        ArrayList<Character> stack5 = new ArrayList<>();
+        stack5.add('Z');
+        stack5.add('T');
+        stack5.add('V');
+        stack5.add('L');
+        stack5.add('G');
+        stack5.add('H');
+        stack5.add('B');
+        stack5.add('F');
+        ArrayList<Character> stack6 = new ArrayList<>();
+        stack6.add('G');
+        stack6.add('S');
+        stack6.add('B');
+        stack6.add('V');
+        stack6.add('C');
+        stack6.add('T');
+        stack6.add('P');
+        stack6.add('L');
+        ArrayList<Character> stack7 = new ArrayList<>();
+        stack7.add('P');
+        stack7.add('G');
+        stack7.add('W');
+        stack7.add('T');
+        stack7.add('R');
+        stack7.add('B');
+        stack7.add('Z');
+        ArrayList<Character> stack8 = new ArrayList<>();
+        stack8.add('R');
+        stack8.add('J');
+        stack8.add('C');
+        stack8.add('T');
+        stack8.add('M');
+        stack8.add('G');
+        stack8.add('N');
+        ArrayList<Character> stack9 = new ArrayList<>();
+        stack9.add('W');
+        stack9.add('B');
+        stack9.add('G');
+        stack9.add('L');
+        ArrayList<ArrayList<Character>> listOfStacks = new ArrayList<>();
+        listOfStacks.add(stack1);
+        listOfStacks.add(stack2);
+        listOfStacks.add(stack3);
+        listOfStacks.add(stack4);
+        listOfStacks.add(stack5);
+        listOfStacks.add(stack6);
+        listOfStacks.add(stack7);
+        listOfStacks.add(stack8);
+        listOfStacks.add(stack9);
+
+        Scanner in = new Scanner(new File("src\\lab8\\AoCDay5.txt"));
+        while(in.hasNext()){
+            String s = in.nextLine();
+            String[] sSplit = s.split(" ");
+            int quantity = Integer.parseInt(sSplit[1]);
+            int beginningIndex = Integer.parseInt(sSplit[3]) - 1;
+            int endingIndex = Integer.parseInt(sSplit[5]) - 1;
+            System.out.println(quantity + " " + beginningIndex + " " + endingIndex);
+            int size = listOfStacks.get(beginningIndex).size() - 1;
+            ArrayList<Character> pickedUpBlocks = new ArrayList<>();
+            for(int i = quantity; i > 0; i--){
+                pickedUpBlocks.add(0, listOfStacks.get(beginningIndex).get(i - 1));
+                listOfStacks.get(beginningIndex).remove(i - 1);
+            }
+            listOfStacks.get(endingIndex).addAll(0, pickedUpBlocks);
+
+        }
+        for(int i = 0; i < listOfStacks.size(); i++){
+            System.out.println(listOfStacks.get(i).get(0));
+        }
+
+    }
+}
